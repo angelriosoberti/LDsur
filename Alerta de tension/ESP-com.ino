@@ -20,7 +20,7 @@ int EstadoSenMagnetico = 0;
 
 const char *ssid = "MOVISTAR_C162";            //MyRedSegura
 const char *password = "T5U47we8N386eSb394V8"; //123456789
-
+// cambiar a boolean  no un byte
 uint8_t connection_state = 0;        // Determina el estado de la conexion
 uint16_t reconnect_interval = 10000; // Si no se conecta espera este tiempo para volver a intentar
 #pragma endregion Globals
@@ -33,7 +33,7 @@ byte Var;
 //String Cerreo2 = "alexdiaz_1493@hotmail.com";
 
 boolean Estado = true;
-
+// cambiar funcion
 uint8_t WiFiConnect(const char *nSSID = nullptr, const char *nPassword = nullptr)
 {
   static uint16_t attempt = 0;
@@ -74,10 +74,13 @@ uint8_t WiFiConnect(const char *nSSID = nullptr, const char *nPassword = nullptr
 
 void Awaits()
 {
+  // mide tiempo 
   uint32_t ts = millis();
+  // mientras que no haya conexion  
   while (!connection_state)
   {
     delay(50);
+    // si el tiempo de espera supera los 10 segundos  + ts  y no hay conexion 
     if (millis() > (ts + reconnect_interval) && !connection_state)
     {
       connection_state = WiFiConnect();
@@ -163,8 +166,6 @@ void EnviarMensajeGMAIL(void)
       delay(5000);
     }
     else
-
-    // hola
     {
       digitalWrite(LedVerificacion, LOW);
       Serial.print("ERROR AL ENVIAR EL MENSAJE: ");
